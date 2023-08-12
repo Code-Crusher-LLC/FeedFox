@@ -36,7 +36,8 @@ if __name__ == "__main__":
 
     browser = Browser()
     browser.start()
-    for feed_id in tqdm.tqdm(feeds):
+    bundles = {}
+    for feed_id in tqdm.tqdm(feeds, desc="Fetching feeds"):
         feed = feeds[feed_id]
         logger.info(f"Processing feed: {feed_id} - {feed['title']}")
 
@@ -46,7 +47,11 @@ if __name__ == "__main__":
             feed["bundle"] = [feed["bundle"]]
 
         paths = feed["bundle"]
+        logger.debug(f"Feed {feed_id} will be bundled in {paths}")
         for path in paths:
+            if path not in bundles:
+                bundles[path] = FeedGenerator()
+                logger.debug(f"Initialize feed to bundle {path}")
             path = os.path.join(public_base_path, path)
             if not os.path.exists(path):
                 os.makedirs(path)
@@ -83,12 +88,27 @@ if __name__ == "__main__":
             entries = template.parse(html)
             for entry in entries:
                 fg.add_entry(entry.entry)
+                for path in paths:
+                    bundles[path].add_entry(entry.entry)
 
         for path in paths:
             path = os.path.join(public_base_path, path)
             fg.atom_file(os.path.join(path, f"{fg.id()}.atom"))
             fg.rss_file(os.path.join(path, f"{fg.id()}.rss"))
+
+    for path in tqdm.tqdm(bundles, desc="Generating bundles"):
+        logger.info(f"Generating bundle {path}")
+        bundle = bundles[path]
+        bundle.id(f"{path}-all")
+        bundle.title(f"{path}")
+        bundle.description(f"{path}")
+        bundle.updated(dateparser.parse("now").astimezone())
+        bundle.link(href=f"{path}/all.atom", rel="self")
+
+        path = os.path.join(public_base_path, path)
+        bundle.atom_file(os.path.join(path, "all.atom"))
+        bundle.rss_file(os.path.join(path, "all.rss"))
+
     browser.stop()
 
-    # TODO: read bundle folders and generate `all.atom` and `all.rss` files
     # TODO: generate `index.html` files for each folder
