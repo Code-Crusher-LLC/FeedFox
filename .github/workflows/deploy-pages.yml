@@ -23,7 +23,7 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
       - run: playwright install-deps && playwright install chromium
-      - run: npx feed-me-up-scotty
+      - run: python app.py
       - name: Upload pages
         uses: actions/upload-artifact@v2
         with:
