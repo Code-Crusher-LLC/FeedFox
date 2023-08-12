@@ -10,7 +10,7 @@ from FeedFox.parser import Parser
 
 
 public_base_path = "public"
-if os.environ.get("GITHUB_ACTIONS", False):
+if os.environ.get("GITHUB_ACTIONS_ENVIRONMENT", False):
     level = logging.INFO
 else:
     level = logging.DEBUG
