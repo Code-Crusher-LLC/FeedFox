@@ -1,0 +1,235 @@
+default:
+  timeout: 20
+  bundle:
+    - "default"
+
+feeds:
+  aws-mls:
+    bundle: "tech-jobs"
+    title: AWS Jobs - Machine Learning Science
+    link: https://www.amazon.jobs/en/job_categories/machine-learning-science?offset=0&result_limit=20&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
+    template: aws-jobs
+  aws-sde:
+    bundle: "tech-jobs"
+    title: AWS Jobs - Software Development
+    link: https://www.amazon.jobs/en/job_categories/software-development?offset=0&result_limit=20&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
+    template: aws-jobs
+  aws-ds:
+    bundle: "tech-jobs"
+    title: AWS Jobs - Data Science
+    link: https://www.amazon.jobs/en/job_categories/data-science?offset=0&result_limit=10&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
+    template: aws-jobs
+  aws-research:
+    bundle: "tech-jobs"
+    title: AWS Jobs - Research Science
+    link: https://www.amazon.jobs/en/job_categories/research-science?offset=0&result_limit=10&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
+    template: aws-jobs
+  ms:
+    bundle: "tech-jobs"
+    title: Microsoft Jobs
+    link: https://jobs.careers.microsoft.com/global/en/search?lc=United%20States&p=Software%20Engineering&p=Product%20Management&p=Research%2C%20Applied%2C%20%26%20Data%20Sciences&d=Software%20Engineering&d=Product%20Management&d=Applied%20Sciences&d=Data%20Science&d=Data%20Engineering&d=Cloud%20Network%20Engineering&d=Data%20%26%20Applied%20Sciences&d=Program%20Management&et=Full-Time&l=en_us&pg=1&pgSz=20&o=Recent&flt=true
+    template:
+      entry: 'div[aria-label^="Job item"]'
+      title: h2
+      link: a
+      content: 'span[aria-label^="job description"]'
+      wait_for: 'div[aria-label^="Job item"]'
+  google:
+    bundle: "tech-jobs"
+    title: Google Jobs
+    link: https://www.google.com/about/careers/applications/jobs/results/?employment_type=FULL_TIME&sort_by=date&location=United%20States&target_level=EARLY
+    template:
+      entry: 'main li:has(h3)'
+      title: h3
+      link: a
+      wait_for: 'main li:has(h3)'
+  apple:
+    bundle: "tech-jobs"
+    title: Apple Jobs
+    link: https://jobs.apple.com/en-us/search?location=united-states-USA&team=machine-learning-infrastructure-MLAI-MLI+deep-learning-and-reinforcement-learning-MLAI-DLRL+natural-language-processing-and-speech-technologies-MLAI-NLP+computer-vision-MLAI-CV+applied-research-MLAI-AR+apps-and-frameworks-SFTWR-AF+cloud-and-infrastructure-SFTWR-CLD+core-operating-systems-SFTWR-COS+devops-and-site-reliability-SFTWR-DSR+engineering-project-management-SFTWR-EPM+information-systems-and-technology-SFTWR-ISTECH+machine-learning-and-ai-SFTWR-MCHLN+security-and-privacy-SFTWR-SEC+software-quality-automation-and-tools-SFTWR-SQAT+wireless-software-SFTWR-WSFT+health-technology-HRDWR-HT+machine-learning-and-ai-HRDWR-MCHLN+sensor-technologies-HRDWR-SENT+environmental-technologies-HRDWR-ENVT
+    template:
+      entry: tbody
+      title: 'a[class$=title]'
+      link: 'a[class$=title]'
+      wait_for: tbody
+  meta:
+    bundle: "tech-jobs"
+    title: Meta Jobs
+    link: https://www.metacareers.com/jobs/?teams[0]=Data%20%26%20Analytics&teams[1]=AR%2FVR&teams[2]=University%20Grad%20-%20PhD%20%26%20Postdoc&teams[3]=University%20Grad%20-%20Engineering%2C%20Tech%20%26%20Design&teams[4]=Software%20Engineering&teams[5]=Technical%20Program%20Management&teams[6]=Product%20Management&sort_by_new=true
+    template:
+      entry: 'div[role=link]'
+      title: 'div:has(+ div button)'
+      link: a
+      wait_for: 'div[role=link]'
+  nvidia:          # FIXME: the link is not working
+    bundle: "tech-jobs"
+    title: NVIDIA Jobs
+    link: https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite?timeType=5509c0b5959810ac0029943377d47364&locationHierarchy1=2fcb99c455831013ea52fb338f2932d8&jobFamilyGroup=0c40f6bd1d8f10ae43ffbd1459047e84&jobFamilyGroup=0c40f6bd1d8f10ae43ffc8817cf47e8e&jobFamilyGroup=0c40f6bd1d8f10ae43ffda1e8d447e94&jobFamilyGroup=0c40f6bd1d8f10ae43ffc668c6847e8c&jobFamilyGroup=0c40f6bd1d8f10ae43ffaefd46dc7e78
+    template:
+      entry: 'section:has(ul) li:has(h3)'
+      title: h3
+      link: h3 > a
+      wait_for: 'section:has(ul) li:has(h3)'
+  snap:
+    bundle: "tech-jobs"
+    title: Snap Jobs
+    link: 'https://www.snap.com/en-US/jobs?lang=en-US'
+    template:
+      entry: 'tbody tr:has(a)'
+      title: 'th:has(a)'
+      link: th a
+      wait_for: 'tbody tr:has(a)'
+  Uber:
+    bundle: "tech-jobs"
+    title: Uber Jobs
+    link: https://www.uber.com/us/en/careers/list/?department=Engineering&department=Data%20Science&department=University
+    template:
+      entry: 'main div:has(> div > span > a)'
+      title: span > a
+      link: span > a
+      wait_for: 'main div:has(> div > span > a)'
+  waymo:
+    bundle: "tech-jobs"
+    title: Waymo Jobs
+    link: 'https://waymo.com/intl/zh-tw/careers/#software-engineering'
+    template:
+      entry: button#software-engineering + ul > li
+      title: h4
+      link: a
+      wait_for: button#software-engineering + ul > li
+  bytedance:
+    bundle: "tech-jobs"
+    timeout: 180
+    title: Bytedance Jobs
+    link: https://jobs.bytedance.com/en/position?keywords=&category=6704215864629004552%2C6704215862603155720&location=CT_243%2CCT_157%2CCT_1103355%2CCT_247%2CCT_94%2CCT_203%2CCT_114%2CCT_75%2CCT_233&project=&type=&job_hot_flag=&current=1&limit=10&functionCategory=&tag=&token=MzsxNjg5ODk1MzI2NTc0OzcwMjI2Njk0MjYyODk4MDQ4MTQ7MDsx
+    template:
+      entry: 'div[class^=listItems] > a'
+      title: 'div[class^=title]'
+      link: a
+      wait_for: 'div[class^=listItems] > a'
+  ge-healthcare:
+    bundle: "tech-jobs"
+    title: GE Healthcare Jobs
+    link: 'https://jobs.gecareers.com/healthcare/global/en/search-results'
+    template:
+      entry: li.jobs-list-item
+      title: div.job-title
+      link: 'a:has(div.job-title)'
+      wait_for: li.jobs-list-item
+    matchOneOf:
+      - deep learning
+      - machine learning
+      - software
+      - data
+      - engineering manager
+  ge:
+    bundle: "tech-jobs"
+    title: GE Jobs
+    link: 'https://jobs.gecareers.com/global/en/search-results'
+    template:
+      entry: li.jobs-list-item
+      title: div.job-title
+      link: 'a:has(div.job-title)'
+      wait_for: li.jobs-list-item
+    matchOneOf:
+      - deep learning
+      - machine learning
+      - software
+      - data
+      - engineering manager
+  coupang:
+    bundle: "tech-jobs"
+    title: Coupang Jobs
+    link: https://www.coupang.jobs/en/jobs/?search=&location=Mountain+View%2C+USA&location=Remote&location=Riverside%2C+USA&location=Seattle%2C+USA&pagesize=200#results
+    template:
+      entry: 'div[class*=job-listing] div[class*=card-job]:has(h2)'
+      title: h2
+      link: a
+      wait_for: 'div[class*=job-listing] div[class*=card-job]:has(h2)'
+  databricks:
+    bundle: "tech-jobs"
+    title: Databricks Jobs
+    link: https://www.databricks.com/company/careers/open-positions?department=all&location=United%20States
+    template:
+      entry: h2 + div > a
+      title: span
+      link: a
+      wait_for: h2 + div > a
+    matchOneOf:
+      - deep learning
+      - machine learning
+      - software
+      - data
+      - engineering manager
+
+  indeed-sde:
+    bundle: "job-search"
+    title: Indeed Software Engineer Jobs
+    link: https://www.indeed.com/jobs?q=software+engineer&l=United+states&sc=0kf%3Ajt%28fulltime%29%3B&fromage=3&vjk=fa64d0616f561014&sort=date
+    template: indeed-jobs
+  indeed-ml:
+    bundle: "job-search"
+    title: Indeed Machine Learning Jobs
+    link: https://www.indeed.com/jobs?q=machine+learning&l=United+states&sc=0kf%3Ajt(fulltime)%3B&fromage=3&sort=date
+    template: indeed-jobs
+  glassdoor-sde:
+    bundle: "job-search"
+    title: Glassdoor Software Engineer Jobs
+    link: https://www.glassdoor.com/Job/united-states-software-engineer-jobs-SRCH_IL.0,13_IN1_KO14,31.htm?fromAge=3&sortBy=date_desc
+    template: glassdoor-jobs
+  glassdoor-ml:
+    bundle: "job-search"
+    title: Glassdoor Machine Learning Jobs
+    link: https://www.glassdoor.com/Job/united-states-machine-learning-jobs-SRCH_IL.0,13_IN1_KO14,30.htm?fromAge=3&sortBy=date_desc
+    template: glassdoor-jobs
+  levels-fyi:
+    bundle: "job-search"
+    title: Levels.fyi Jobs
+    link: https://www.levels.fyi/jobs/location/united-states?jobFamilySlugs=software-engineer%2Cdata-scientist%2Cproduct-manager%2Csoftware-engineering-manager&jobId=99441083848499910&locationSlug=united-states&postedAfterTimeType=days&postedAfterValue=7&sortBy=date_published&standardLevels=entry%2Cmid_staff
+    template:
+      entry: 'div[class*=company-jobs-preview-card_container]'
+      title: h2
+      link: a
+      wait_for: 'div[class*=company-jobs-preview-card_container]'
+  startup-jobs-sde:
+    bundle: "startup-job-search"
+    title: Startup.jobs Software Engineer
+    link: https://startup.jobs/?c=Full-Time%2CContractor&loc=United+States&latlng=38.65794842982269%2C-89.49259045354502&q=software
+    template: startup-jobs
+  startup-jobs-ml:
+    bundle: "startup-job-search"
+    title: Startup.jobs Machine Learning
+    link: https://startup.jobs/?c=Full-Time%2CContractor&loc=United+States&latlng=38.65794842982269%2C-89.49259045354502&q=machine+learning
+    template: startup-jobs
+  ycombinator:
+    bundle: "startup-job-search"
+    title: Y Combinator Jobs
+    link: 'https://www.ycombinator.com/jobs'
+    template:
+      entry: 'section div:has(h2) + div > ul > li'
+      title: 'div > a:has(> img) + div > a + div'
+      link: 'div > a:has(> img) + div > a'
+      wait_for: 'section div:has(h2) + div > ul > li'
+
+templates:
+  aws-jobs:
+    entry: div.job-tile
+    title: h3.job-title
+    link: a
+    content: div.description
+    wait_for: div.job-tile
+  indeed-jobs:
+    entry: 'ul[class*=jobsearch-ResultsList] > li:has(h2 > a)'
+    title: 'h2:has(> a)'
+    link: h2 > a
+    wait_for: 'ul[class*=jobsearch-ResultsList] > li:has(h2 > a)'
+  glassdoor-jobs:
+    entry: 'ul > li[class*=react-job-listing]'
+    title: div.job-title
+    link: a
+    wait_for: 'ul > li[class*=react-job-listing]'
+  startup-jobs:
+    entry: 'div[data-search-target=results] div:has(> div > a > img)'
+    title: 'div:has(img) > div > a:nth-child(1)'
+    link: 'div:has(img) > div > a:nth-child(1)'
+    wait_for: 'div[data-search-target=results] div:has(> div > a > img)'

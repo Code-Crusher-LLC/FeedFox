@@ -1,0 +1,45 @@
+default:
+  timeout: 60       # timeout in seconds
+  filters:          # one or more strings to exclude entries in the feed
+    - "Next page"
+    - "Another string"
+  match-one-of:            # one or more strings to include entries in the feed
+    - "Include this"
+    - "Another string"
+  match-all-of:            # one or more strings to include entries in the feed
+    - "Include this"
+    - "Another string"
+  bundle:           # one or more bundle IDs to include entries in the feed
+    - "default"    # output feed will be include in "public/Bundle 1/feed1.xml" and "public/Bundle 1/all.xml"
+
+feeds:
+  feed1:    # feed ID, output file will be named "feed1.xml"
+    title: "Feed 1"   # title of the feed
+    description: "This is the first feed"
+    link:             # one or more links to generate the feed
+      - "https://www.example.com/"
+    template: "Template 1"
+    bundle: # one or more bundle IDs to include entries in the feed
+      - "Bundle 1"  #output feed will be include in "public/Bundle 1/feed1.xml" and "public/Bundle 1/all.xml"
+  feed2:
+    title: "Feed 2"
+    description: "This is the second feed"
+    link:
+      - "https://www.example.com/"
+    template:    # templates can be defined here (anonymously) or in the templates section
+      entry: 'div[class^=listItems] > a'
+      title: 'div[class^=title]'
+      link: a
+      wait_for: 'div[class^=listItems] > a'
+    bundle:
+      - "Bundle 1"
+
+templates:
+  Template 1:
+    entry: "div.entry"
+    title: "h1"
+    link: "a"
+    content: "div.content"
+    description: "p"
+    updated_time: "time"
+    wait_for: "div.entry"

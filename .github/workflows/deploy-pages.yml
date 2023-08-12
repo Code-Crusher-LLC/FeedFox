@@ -1,0 +1,43 @@
+name: Publish feeds to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  # You can also schedule this workflow to run at specific times
+  # schedule:
+  #   # * is a special character in YAML so you have to quote this string
+  #   # Run every day at midnight
+  #   - cron:  '0 0 * * *'
+
+jobs:
+  build-pages:
+    runs-on: ubuntu-20.04
+    env:
+      GITHUB_ACTIONS: true
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - run: playwright install-deps && playwright install chromium
+      - run: npx feed-me-up-scotty
+      - name: Upload pages
+        uses: actions/upload-artifact@v2
+        with:
+          path: public
+  deploy:
+    needs: build-pages
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
