@@ -5,22 +5,30 @@ default:
 
 feeds:
   aws-mls:
-    bundle: "tech-jobs"
+    bundle:
+      - "tech-jobs"
+      - "aws-jobs"
     title: AWS Jobs - Machine Learning Science
     link: https://www.amazon.jobs/en/job_categories/machine-learning-science?offset=0&result_limit=20&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
     template: aws-jobs
   aws-sde:
-    bundle: "tech-jobs"
+    bundle:
+      - "tech-jobs"
+      - "aws-jobs"
     title: AWS Jobs - Software Development
     link: https://www.amazon.jobs/en/job_categories/software-development?offset=0&result_limit=20&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
     template: aws-jobs
   aws-ds:
-    bundle: "tech-jobs"
+    bundle:
+      - "tech-jobs"
+      - "aws-jobs"
     title: AWS Jobs - Data Science
     link: https://www.amazon.jobs/en/job_categories/data-science?offset=0&result_limit=10&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
     template: aws-jobs
   aws-research:
-    bundle: "tech-jobs"
+    bundle:
+      - "tech-jobs"
+      - "aws-jobs"
     title: AWS Jobs - Research Science
     link: https://www.amazon.jobs/en/job_categories/research-science?offset=0&result_limit=10&sort=recent&job_type%5B%5D=Full-Time&country%5B%5D=USA&distanceType=Mi&radius=24km&latitude=&longitude=&loc_group_id=&loc_query=&base_query=&city=&country=&region=&county=&query_options=&#search-results-box
     template: aws-jobs
