@@ -1,5 +1,11 @@
 # FeedFox
 
+![GitHub repo size](https://img.shields.io/github/repo-size/code-crusher-llc/feedfox)
+![GitHub](https://img.shields.io/github/license/code-crusher-llc/feedfox)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/code-crusher-llc/feedfox/main)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/code-crusher-llc/feedfox/deploy-pages.yml)
+![GitHub deployments](https://img.shields.io/github/deployments/code-crusher-llc/feedfox/github-pages)
+
 Generate RSS/ATOM feeds from web pages with FeedFox. Even those websites that load content via JavaScript are not an issue, thanks to the Playwright headless browser integration. Dynamically loaded content by JS can now be fetched with ease. While being inspired by [Feed me up, Scotty!](https://feed-me-up-scotty.vincenttunru.com/), FeedFox, implemented in Python, introduces further enhancements in usability.
 
 
