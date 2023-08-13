@@ -92,6 +92,7 @@ if __name__ == "__main__":
                 logger.info("Skipping...")
                 continue
             entries = template.parse(html)
+            logger.info(f"Found {len(entries)} entries")
             for entry in entries:
                 if not urllib.parse.urlparse(entry.link).netloc:
                     entry.link = urllib.parse.urljoin(link, entry.link)
