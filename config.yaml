@@ -1,5 +1,5 @@
 default:
-  timeout: 20
+  timeout: 60
   bundle:
     - "default"
 
