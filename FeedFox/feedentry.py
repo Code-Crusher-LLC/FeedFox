@@ -2,6 +2,7 @@ import logging
 import dateparser
 from dateparser.search import search_dates
 from bs4 import BeautifulSoup, element
+import html2text
 from feedgen.entry import FeedEntry as Entry
 
 logger = logging.getLogger(__name__)
@@ -67,7 +68,10 @@ class FeedEntry(object):
     def content(self, value):
         if isinstance(value, BeautifulSoup) or isinstance(value, element.Tag):
             # self._entry.content(" ".join(value.stripped_strings))
-            self._entry.content(value.prettify())
+            handler = html2text.HTML2Text()
+            handler.ignore_links = False
+            value = handler.handle(value.prettify())
+            self._entry.content(value)
         else:
             self._entry.content(value)
         logger.debug(f"Set entry content to {self._entry.content()}")
