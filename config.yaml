@@ -39,6 +39,7 @@ feeds:
     template:
       entry: 'div[aria-label^="Job item"]'
       title: h2
+      updated_time: h2 + div
       link: a
       content: 'span[aria-label^="job description"]'
       wait_for: 'div[aria-label^="Job item"]'
@@ -59,6 +60,7 @@ feeds:
       entry: tbody
       title: 'a[class$=title]'
       link: 'a[class$=title]'
+      updated_time: span[class$=date]
       wait_for: tbody
   meta:
     bundle: "tech-jobs"
@@ -77,6 +79,7 @@ feeds:
       entry: 'section:has(ul) li:has(h3)'
       title: h3
       link: h3 > a
+      updated_time: div[data-automation-id=postedOn]
       wait_for: 'section:has(ul) li:has(h3)'
   snap:
     bundle: "tech-jobs"
@@ -119,11 +122,7 @@ feeds:
     bundle: "tech-jobs"
     title: GE Healthcare Jobs
     link: 'https://jobs.gecareers.com/healthcare/global/en/search-results'
-    template:
-      entry: li.jobs-list-item
-      title: div.job-title
-      link: 'a:has(div.job-title)'
-      wait_for: li.jobs-list-item
+    template: ge-jobs
     matchOneOf:
       - deep learning
       - machine learning
@@ -134,11 +133,7 @@ feeds:
     bundle: "tech-jobs"
     title: GE Jobs
     link: 'https://jobs.gecareers.com/global/en/search-results'
-    template:
-      entry: li.jobs-list-item
-      title: div.job-title
-      link: 'a:has(div.job-title)'
-      wait_for: li.jobs-list-item
+    template: ge-jobs
     matchOneOf:
       - deep learning
       - machine learning
@@ -198,6 +193,7 @@ feeds:
       entry: 'div[class*=company-jobs-preview-card_container]'
       title: h2
       link: a
+      updated_time: span[class*=companyJobDate]
       wait_for: 'div[class*=company-jobs-preview-card_container]'
   startup-jobs-sde:
     bundle: "startup-job-search"
@@ -217,6 +213,7 @@ feeds:
       entry: 'section div:has(h2) + div > ul > li'
       title: 'div > a:has(> img) + div > a + div'
       link: 'div > a:has(> img) + div > a'
+      updated_time: div a + div > a
       wait_for: 'section div:has(h2) + div > ul > li'
 
 templates:
@@ -225,11 +222,13 @@ templates:
     title: h3.job-title
     link: a
     content: div.description
+    updated_time: h2.posting-date
     wait_for: div.job-tile
   indeed-jobs:
     entry: 'ul[class*=jobsearch-ResultsList] > li:has(h2 > a)'
     title: 'h2:has(> a)'
     link: h2 > a
+    updated_time: span.date
     wait_for: 'ul[class*=jobsearch-ResultsList] > li:has(h2 > a)'
   glassdoor-jobs:
     entry: 'ul > li[class*=react-job-listing]'
@@ -241,3 +240,9 @@ templates:
     title: 'div:has(img) > div > a:nth-child(1)'
     link: 'div:has(img) > div > a:nth-child(1)'
     wait_for: 'div[data-search-target=results] div:has(> div > a > img)'
+  ge-jobs:
+    entry: li.jobs-list-item
+    title: div.job-title
+    link: 'a:has(div.job-title)'
+    updated_time: span.job-date
+    wait_for: li.jobs-list-item
