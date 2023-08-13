@@ -4,3 +4,4 @@ dateparser
 tqdm
 pyyaml
 feedgen
+jinja2

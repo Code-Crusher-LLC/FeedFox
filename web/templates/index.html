@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <!-- Title and Description -->
+  <div class="text-center mb-4">
+    <h1>FeedFox RSS</h1>
+  </div>
+
+  <!-- Accordion -->
+  <div class="w-75 mx-auto">
+    <div class="accordion" id="customAccordion">
+      {% for bundle_id in bundles.keys() | sort %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{ loop.index }}">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapse{{ loop.index }}"
+            aria-expanded="false"
+            aria-controls="collapse{{ loop.index }}"
+          >
+            {{ bundle_id }}
+          </button>
+        </h2>
+        <div
+          id="collapse{{ loop.index }}"
+          class="accordion-collapse collapse"
+          aria-labelledby="heading{{ loop.index }}"
+          data-bs-parent="#customAccordion"
+        >
+          <div class="accordion-body">
+            <!-- List of links -->
+            <ul class="list-unstyled mt-3">
+              {% for feed in bundles[bundle_id] %}
+              <li>
+                <a href="{{ feed['href'] }}" target="_blank"
+                  >{{ feed["title"] }}</a
+                >
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
