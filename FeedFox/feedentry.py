@@ -41,7 +41,7 @@ class FeedEntry(object):
 
     @property
     def link(self):
-        return self._entry.link()
+        return self._entry.link()[0]["href"]
 
     @link.setter
     def link(self, value):

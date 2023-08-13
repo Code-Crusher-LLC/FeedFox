@@ -1,6 +1,7 @@
 import os
 import sys
 import shutil
+import urllib.parse
 import logging
 import yaml
 import tqdm
@@ -92,6 +93,8 @@ if __name__ == "__main__":
                 continue
             entries = template.parse(html)
             for entry in entries:
+                if not urllib.parse.urlparse(entry.link).netloc:
+                    entry.link = urllib.parse.urljoin(link, entry.link)
                 fg.add_entry(entry.entry)
                 for path in paths:
                     bundles[path].add_entry(entry.entry)
