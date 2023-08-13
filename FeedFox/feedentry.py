@@ -47,15 +47,15 @@ class FeedEntry(object):
     def link(self, value):
         if isinstance(value, BeautifulSoup) or isinstance(value, element.Tag):
             if value.has_attr("href") and value["href"]:
-                self._entry.link(link={"href": value["href"]})
+                self._entry.link(link={"href": value["href"]}, replace=True)
                 self._entry.id(value["href"])
             else:
-                self._entry.link(link={"href": ""})
+                self._entry.link(link={"href": ""}, replace=True)
         elif isinstance(value, str):
-            self._entry.link(link={"href": value})
+            self._entry.link(link={"href": value}, replace=True)
             self._entry.id(value)
         else:
-            self._entry.link(link={"href": ""})
+            self._entry.link(link={"href": ""}, replace=True)
         logger.debug(f"Set entry link to {self._entry.link()}")
         logger.debug(f"Set entry id to {self._entry.id()}")
 
