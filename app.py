@@ -16,7 +16,7 @@ public_base_path = "public"
 if not os.path.exists(public_base_path):
     os.makedirs(public_base_path)
 
-if os.environ.get("GITHUB_ACTIONS_ENVIRONMENT", False):
+if os.environ.get("CI", False):
     level = logging.INFO
 else:
     level = logging.DEBUG
