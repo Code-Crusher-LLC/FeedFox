@@ -186,7 +186,7 @@ feeds:
     link: https://www.glassdoor.com/Job/united-states-machine-learning-jobs-SRCH_IL.0,13_IN1_KO14,30.htm?fromAge=3&sortBy=date_desc
     template: glassdoor-jobs
   levels-fyi:
-    bundle: "job-search"
+    bundle: "tech-jobs"
     title: Levels.fyi Jobs
     link: https://www.levels.fyi/jobs/location/united-states?jobFamilySlugs=software-engineer%2Cdata-scientist%2Cproduct-manager%2Csoftware-engineering-manager&jobId=99441083848499910&locationSlug=united-states&postedAfterTimeType=days&postedAfterValue=7&sortBy=date_published&standardLevels=entry%2Cmid_staff
     template:
