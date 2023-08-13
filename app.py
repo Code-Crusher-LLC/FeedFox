@@ -12,6 +12,9 @@ from jinja2 import Environment, FileSystemLoader
 
 
 public_base_path = "public"
+if not os.path.exists(public_base_path):
+    os.makedirs(public_base_path)
+
 if os.environ.get("GITHUB_ACTIONS_ENVIRONMENT", False):
     level = logging.INFO
 else:
@@ -138,9 +141,11 @@ if __name__ == "__main__":
     env = Environment(loader=FileSystemLoader("web/templates"))
     template = env.get_template("index.html")
 
-    with open("public/index.html", "w") as f:
+
+    with open(os.path.join(public_base_path, "index.html"), "w") as f:
         f.write(template.render(title="FeedFox RSS", bundles=bundles))
 
-    if os.path.exists("public/static"):
-        shutil.rmtree("public/static")
-    shutil.copytree("web/static", "public/static")
+    static_path = os.path.join(public_base_path, "static")
+    if os.path.exists(static_path):
+        shutil.rmtree(static_path)
+    shutil.copytree("web/static", static_path)
