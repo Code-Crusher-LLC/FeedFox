@@ -40,7 +40,7 @@ jobs:
           cache: 'pip'
       - run: pip install -r requirements.txt
       # TODO: add caching playwright installation
-      - run: playwright install-deps && playwright install chromium
+      - run: playwright install-deps && playwright install firefox
       - run: python app.py
       - name: Upload pages
         uses: actions/upload-pages-artifact@v2

@@ -9,7 +9,7 @@ class AsyncBrowser(object):
 
     async def start(self, slow_mo=300):
         self.playwright = await async_playwright().start()
-        self.browser = await self.playwright.chromium.launch(slow_mo=slow_mo)
+        self.browser = await self.playwright.firefox.launch(slow_mo=slow_mo)
 
     async def stop(self):
         await self.browser.close()
@@ -46,7 +46,7 @@ class Browser(object):
 
     def start(self, slow_mo=100):
         self.playwright = sync_playwright().start()
-        self.browser = self.playwright.chromium.launch(slow_mo=slow_mo)
+        self.browser = self.playwright.firefox.launch(slow_mo=slow_mo)
 
     def stop(self):
         self.browser.close()
