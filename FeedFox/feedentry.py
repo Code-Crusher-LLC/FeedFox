@@ -1,5 +1,6 @@
 import logging
 import dateparser
+from dateparser.search import search_dates
 from bs4 import BeautifulSoup, element
 from feedgen.entry import FeedEntry as Entry
 
@@ -92,7 +93,10 @@ class FeedEntry(object):
         if isinstance(value, BeautifulSoup) or isinstance(value, element.Tag):
             value = " ".join(value.stripped_strings)
         if isinstance(value, str) and value != "":
-            value = dateparser.parse(value).astimezone()
+            if search_dates(value):
+                value = search_dates(value)[0][1].astimezone()
+            else:
+                value = dateparser.parse("now").astimezone()
         self._entry.updated(value)
         self._entry.published(value)
         logger.debug(f"Set entry published time to {self._entry.published()}")
